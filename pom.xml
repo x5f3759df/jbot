@@ -12,8 +12,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 
 				</configuration>
 			</plugin>
@@ -53,7 +53,7 @@
 			<plugin>
 				<groupId>com.akathist.maven.plugins.launch4j</groupId>
 				<artifactId>launch4j-maven-plugin</artifactId>
-				<version>1.5.1</version>
+				<version>1.7.15</version>
 				<executions>
 					<execution>
 						<id>l4j-clui</id>
@@ -71,7 +71,7 @@
 								<preCp>anything</preCp>
 							</classPath>
 							<jre>
-								<minVersion>1.6.0</minVersion>
+								<minVersion>1.8.0</minVersion>
 								<jdkPreference>preferJre</jdkPreference>
 								<maxHeapSize>100</maxHeapSize>
 							</jre>
@@ -95,7 +95,7 @@
 	</build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<smackVersion>4.0.6</smackVersion>
+		<smackVersion>4.1.9</smackVersion>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -119,6 +119,11 @@
 			<artifactId>smack-extensions</artifactId>
 			<version>${smackVersion}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.igniterealtime.smack</groupId>
+            <artifactId>smack-java7</artifactId>
+            <version>${smackVersion}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -206,7 +211,7 @@
 			<artifactId>streamobserver</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 	<repositories>
 		<repository>
 			<id>rkfg_maven</id>

@@ -5,6 +5,8 @@
  */
 package me.rkfg.xmpp.bot.plugins;
 
+import static org.jsoup.helper.HttpConnection.*;
+
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.Arrays;
@@ -14,10 +16,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 
 import javax.xml.parsers.ParserConfigurationException;
-import static me.rkfg.xmpp.bot.plugins.CommandPlugin.COMMAND_GROUP;
+
 import org.jivesoftware.smack.packet.Message;
 import org.jsoup.Jsoup;
-import static org.jsoup.helper.HttpConnection.DEFAULT_UA;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -72,6 +73,7 @@ public class CustomSearchPlugin extends CommandPlugin {
             }
             else
             {
+                doc.select("div.result--ad").remove();
                 Element title = doc.select("a.result__a").first();
                 Element text = doc.select("a.result__snippet").first();
                 Element link = doc.select("a.result__url").first();

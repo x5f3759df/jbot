@@ -1,15 +1,15 @@
 package me.rkfg.xmpp.bot;
 
-import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.SmackException.NotConnectedException;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.chat.Chat;
 import org.jivesoftware.smack.packet.Message;
 
 public class ChatAdapterImpl extends LoggingChatAdapter {
     private Chat chat;
 
     public ChatAdapterImpl(Chat chat) {
-        super(Main.getNick() + " ⇒ " + chat.getParticipant());
+        super(Bot.INSTANCE.getBotNick() + " ⇒ " + chat.getParticipant());
         this.chat = chat;
     }
 

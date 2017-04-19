@@ -1,28 +1,34 @@
 package me.rkfg.xmpp.bot.plugins;
 
+import org.jivesoftware.smack.chat.ChatManager;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Message.Type;
-import org.jivesoftware.smack.util.StringUtils;
+import org.jxmpp.util.XmppStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import me.rkfg.xmpp.bot.Bot;
+import me.rkfg.xmpp.bot.ChatAdapter;
+import me.rkfg.xmpp.bot.MUCManager;
+import ru.ppsrk.gwt.server.SettingsManager;
 
 public abstract class MessagePluginImpl implements MessagePlugin {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     protected final String getNick(String from) {
-        return StringUtils.parseResource(from);
+        return XmppStringUtils.parseResource(from);
     }
 
     protected final String getNick(Message message) {
-        return StringUtils.parseResource(message.getFrom());
+        return XmppStringUtils.parseResource(message.getFrom());
     }
 
     protected final String getBareAddress(String from) {
-        return StringUtils.parseBareAddress(from);
+        return XmppStringUtils.parseBareJid(from);
     }
 
     protected final String getBareAddress(Message message) {
-        return StringUtils.parseBareAddress(message.getFrom());
+        return XmppStringUtils.parseBareJid(message.getFrom());
     }
 
     protected boolean isMessageFromUser(Message message) {
@@ -56,5 +62,33 @@ public abstract class MessagePluginImpl implements MessagePlugin {
             return nick;
         }
         return nick.substring(0, 1) + "\u200b" + nick.substring(1);
+    }
+
+    protected SettingsManager getSettingsManager() {
+        return Bot.INSTANCE.getSettingsManager();
+    }
+
+    protected MUCManager getMUCManager() {
+        return Bot.INSTANCE.getMUCManager();
+    }
+
+    protected ChatManager getChatManagerInstance() {
+        return Bot.INSTANCE.getChatManagerInstance();
+    }
+
+    protected void sendMUCMessage(String message, String mucName) {
+        Bot.INSTANCE.sendMUCMessage(message, mucName);
+    }
+
+    protected void sendMessage(ChatAdapter chatAdapter, String message) {
+        Bot.INSTANCE.sendMessage(chatAdapter, message);
+    }
+
+    protected void sendMUCMessage(String message) {
+        Bot.INSTANCE.sendMUCMessage(message);
+    }
+
+    protected String getBotNick() {
+        return Bot.INSTANCE.getBotNick();
     }
 }
